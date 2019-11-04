@@ -1,11 +1,29 @@
-package homework_12;
+/**
+ * Copyright add 13 home work
+ */
 
+package homework_12;
 import java.util.Scanner;
+
+/**
+ * @author UA
+ * @version 0.1
+ * @since JDK 1.8
+ */
 
 public class HomeWork_12 {
 
+    // змінна для вводу даних з консолі
     static Scanner scan;
 
+    /**
+     * викликає меню
+     *
+     * @param немає
+     * @return нічого
+     * @author Vitaliy
+     * @see - дививсь заголовок
+     */
     private static void menu() {
         System.out.println("Зроби вибір: ");
         System.out.println("\t1.Перевірити чи є такий місяць. ");
@@ -21,33 +39,55 @@ public class HomeWork_12 {
         System.out.println("Введи \"quit\" щоб вийти. ");
     }
 
+    /**
+     * @param немає
+     * @return нічого
+     * @throws WrongInputConsoleParametersException - коли місяць не існує
+     * @author Vitaliy
+     * @see - дививсь заголовок
+     */
     private static void task_1() {
-        boolean isFinded = false;
-        System.out.println("Введи місяць: ");
-        String str = scan.next();
-        for (Month mon : Month.values()) {
-            if (mon.name().equalsIgnoreCase(str)) {
-                System.out.println("Місяць існує");
-                isFinded = true;
+        try {
+            boolean isFinded = false;
+            System.out.println("Введи місяць: ");
+            String str = scan.next();
+            for (Month mon : Month.values()) {
+                if (mon.name().equalsIgnoreCase(str)) {
+                    System.out.println("Місяць існує");
+                    isFinded = true;
+                }
             }
-        }
-        if (!isFinded) {
-            System.out.println("Місяць не існує");
+            if (!isFinded) {
+                throw new WrongInputConsoleParametersException("Місяць не існує");
+            }
+        } catch (WrongInputConsoleParametersException e) {
+            System.out.println(e);
         }
     }
 
+    /**
+     * @param немає
+     * @return нічого
+     * @throws WrongInputConsoleParametersException - коли місяць не знайдено
+     * @author Vitaliy
+     * @see - дививсь заголовок
+     */
     private static void task_2() {
-        boolean isFinded = false;
-        System.out.println("Введи пору року: ");
-        String str = scan.next();
-        for (Month mon : Month.values()) {
-            if (mon.getSeason().name().equalsIgnoreCase(str)) {
-                System.out.println(mon.name());
-                isFinded = true;
+        try {
+            boolean isFinded = false;
+            System.out.println("Введи пору року: ");
+            String str = scan.next();
+            for (Month mon : Month.values()) {
+                if (mon.getSeason().name().equalsIgnoreCase(str)) {
+                    System.out.println(mon.name());
+                    isFinded = true;
+                }
             }
-        }
-        if (!isFinded) {
-            System.out.println("Місяців не знайдено");
+            if (!isFinded) {
+                throw new WrongInputConsoleParametersException("Місяців не знайдено");
+            }
+        } catch (WrongInputConsoleParametersException e) {
+            System.out.println(e);
         }
     }
 
@@ -171,8 +211,7 @@ public class HomeWork_12 {
                 if (mon.getDays() % 2 == 0) {
                     System.out.println("Місяць з парною кількість днів");
                     isFinded = true;
-                }
-                else if (mon.getDays() % 2 == 1) {
+                } else if (mon.getDays() % 2 == 1) {
                     System.out.println("Місяць з непарною кількість днів");
                     isFinded = true;
                 }
@@ -183,7 +222,7 @@ public class HomeWork_12 {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws WrongInputConsoleParametersException {
 
         scan = new Scanner(System.in);
         menu();
@@ -224,7 +263,5 @@ public class HomeWork_12 {
             menu();
             line = scan.next();
         }
-
     }
-
 }
