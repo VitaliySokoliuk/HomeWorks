@@ -3,6 +3,7 @@
  */
 
 package homework_12;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -48,13 +49,22 @@ public class HomeWork_12 {
      */
     private static void task_1() {
         try {
+            
+            // Використовуючи ArrayList зробить тільки одне завдання, тому що воно однотипне
+            
+            ArrayList <String> month = new ArrayList<>();
             boolean isFinded = false;
             System.out.println("Введи місяць: ");
             String str = scan.next();
             for (Month mon : Month.values()) {
-                if (mon.name().equalsIgnoreCase(str)) {
+                month.add(mon.toString());
+            }
+            
+            for(int i = 0; i < month.size(); i++){
+                if (month.contains(str)) {
                     System.out.println("Місяць існує");
                     isFinded = true;
+                    break;
                 }
             }
             if (!isFinded) {
